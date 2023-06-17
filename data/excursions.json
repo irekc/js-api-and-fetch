@@ -1,4 +1,10 @@
 {
-    "excursions": [],
+    "excursions": [{
+        "id" : "1",
+        "name" : "Kraków",
+        "description" : "lorem ipsum",
+        "adultPrice" : "89",
+        "childPrice" : "49"
+    }],
     "orders": []
 }
