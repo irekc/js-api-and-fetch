@@ -33,8 +33,8 @@ updateExcursions() {
     ulEl.addEventListener('click', e => {
         e.preventDefault();
         const editBtn = e.target
-        console.log('edycja')
-        if(editBtn.tagName === 'INPUT') {
+        
+        if(editBtn.classList.contains('excursions__field-input--update')) {
             const liEl = editBtn.closest('.excursions__item');
             const arrWithElToEdit = this._getArrWithElementsToCreateAndEditLi(liEl);
             const isEditable = arrWithElToEdit.every(element => element.isContentEditable);
@@ -72,17 +72,23 @@ updateExcursions() {
    
 }
 
-removeExcursions(e) {
+removeExcursions() {
+    const ulEl = document.querySelector('.panel__excursions')
+
+    ulEl.addEventListener('click', e => {
+        const removeBtn = e.target;
+
+        if(removeBtn.classList.contains('excursions__field-input--remove')) {
+            const liEl = removeBtn.closest('.excursions__item');
+            const id = liEl.dataset.id;
+            const options = {method: 'DELETE'};
+            fetch(`${this.urlExcursions}/${id}`, options)
+                .then(resp => console.log(resp))
+                .catch(err => console.error(err))
+                .finally(this.loadExcursions());
+        }
+    })
     console.log('usuwanie')
-    const targetEl = e.target.closest('.excursions__item');
-    if(targetEl.tagName === 'LI') {
-        const id = targetEl.dataset.id;
-        const options = {method: 'DELETE'};
-        fetch(`${this.urlExcursions}/${id}`, options)
-            .then(resp => console.log(resp))
-            .catch(err => console.error(err))
-            .finally(this.loadExcursions);
-    }
     
    
 };
@@ -101,7 +107,7 @@ addExcursions() {
             childPrice: formChildPrice.value
         }
 
-        console.log(data)
+        
         const options = {
             method: 'POST',
             body: JSON.stringify( data ),
@@ -111,7 +117,7 @@ addExcursions() {
         this._fetch(this.urlExcursions, options)
             .then(resp => console.log(resp))
             .catch(err => console.error(err))
-            .finally( this.loadExcursions )
+            .finally( this.loadExcursions() )
     })
 
 }
