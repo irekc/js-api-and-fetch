@@ -1,10 +1,19 @@
 {
-    "excursions": [{
-        "id" : "1",
-        "name" : "Kraków",
-        "description" : "lorem ipsum",
-        "adultPrice" : "89",
-        "childPrice" : "49"
-    }],
-    "orders": []
+  "excursions": [
+    {
+      "id": "1",
+      "name": "Kraków",
+      "description": "lorem ipsum",
+      "adultPrice": "89",
+      "childPrice": "49"
+    },
+    {
+      "name": "Warszawa",
+      "description": "stolica Polski",
+      "adultPrice": "200",
+      "childPrice": "100",
+      "id": "7lRmt9Y"
+    }
+  ],
+  "orders": []
 }

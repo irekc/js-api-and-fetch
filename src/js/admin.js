@@ -4,6 +4,14 @@ import ExcursionsAPI from './ExcursionsAPI';
 
 const excursions = new ExcursionsAPI();
 
-excursions.loadExcursions()
+document.addEventListener('DOMContentLoaded', init)
 
-console.log('admin');
+function init() {
+    
+    excursions.addExcursions();
+    excursions.updateExcursions();
+    excursions.loadExcursions();
+    
+    console.log('admin');
+}
+

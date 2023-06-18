@@ -1,20 +1,23 @@
 class ExcursionsAPI {
 constructor() {
-    this.urlExcursions = 'http://localhost:3000/excursions';
-    this.urlOrders = 'http://localhost:3000/orders';
+    this.url = 'http://localhost:3000';
+    this.urlExcursions = `${this.url}/excursions`;
+    this.urlOrders = `${this.url}/orders`;
 
 }
 
 loadExcursions() {
+    console.log('ładowanie')
     this._fetch(this.urlExcursions)
         .then(data => this.insertExcursions(data))
         .catch(err => console.error(err))
-    }
+        
+}
     
-    insertExcursions(excursionsArr) {
-        const ulEl = document.querySelector('.panel__excursions');
-        const liElPrototype = document.querySelector('.excursions__item--prototype');
-        ulEl.innerHTML = '';
+insertExcursions(excursionsArr) {
+    console.log('dodawanie')
+    const ulEl = document.querySelector('.panel__excursions');
+    ulEl.innerHTML = '';
     
     excursionsArr.forEach( item => {
         const liEl = this._createLiEl(item);
@@ -23,38 +26,92 @@ loadExcursions() {
 
 }   
 
-updateExcursions(arrWithElToEdit) {
-    if(e.target.value === 'edytuj') {
-        e.target.value = 'zapisz';
-        arrWithElToEdit.forEach(item => {
-            item.setAttribute('contenteditable', true)
-        })
-    } else {
-        e.target.value = 'edytuj';
-        arrWithElToEdit.forEach(item => {
-            item.setAttribute('contenteditable', false)
-        })
-    }
+updateExcursions() {
+    const ulEl = document.querySelector('.panel__excursions')
+
+    console.log('edycja')
+    ulEl.addEventListener('click', e => {
+        e.preventDefault();
+        const editBtn = e.target
+        console.log('edycja')
+        if(editBtn.tagName === 'INPUT') {
+            const liEl = editBtn.closest('.excursions__item');
+            const arrWithElToEdit = this._getArrWithElementsToCreateAndEditLi(liEl);
+            const isEditable = arrWithElToEdit.every(element => element.isContentEditable);
+
+            if(isEditable) {
+                e.target.value = 'edytuj';
+                arrWithElToEdit.forEach(element => element.setAttribute('contenteditable', false))
+                
+            } else {
+                e.target.value = 'zapisz';
+                arrWithElToEdit.forEach(element => element.setAttribute('contenteditable', true))
+            }
+        }
+    })
+    
+    
+    // if(e.target.value === 'edytuj') {
+    //     e.target.value = 'zapisz';
+    //     arrWithElToEdit.forEach(item => {
+    //         item.setAttribute('contenteditable', true)
+    //     })
+    // } else {
+    //     e.target.value = 'edytuj';
+    //     arrWithElToEdit.forEach(item => {
+    //         item.setAttribute('contenteditable', false)
+    //     })
+    // }
 }
 
-removeExcursions() {
-    const ulEl = document.querySelector('.panel__excursions');
-
+removeExcursions(e) {
+    console.log('usuwanie')
+    const targetEl = e.target.closest('.excursions__item');
+    if(targetEl.tagName === 'LI') {
+        const id = targetEl.dataset.id;
+        const options = {method: 'DELETE'};
+        fetch(`${this.urlExcursions}/${id}`, options)
+            .then(resp => console.log(resp))
+            .catch(err => console.error(err))
+            .finally(this.loadExcursions);
+    }
+    
+   
 };
+
+addExcursions() {
+    const form = document.querySelector('.panel__form');
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+
+        const [formName, formDescription, formAdultPrice, formChildPrice] = e.target.elements;
+        const data = {
+            
+            name: formName.value,
+            description: formDescription.value,
+            adultPrice: formAdultPrice.value,
+            childPrice: formChildPrice.value
+        }
+
+        console.log(data)
+        const options = {
+            method: 'POST',
+            body: JSON.stringify( data ),
+            headers: {'Content-type': 'application/json'}
+        }
+
+        this._fetch(this.urlExcursions, options)
+            .then(resp => console.log(resp))
+            .catch(err => console.error(err))
+            .finally( this.loadExcursions )
+    })
+
+}
 
 _createLiEl( item ) {
     const {id, name, description, adultPrice, childPrice} = item;
-
-    const liElPrototype = document.querySelector('.excursions__item--prototype');
-    const newLiEl = liElPrototype.cloneNode(true);
-    newLiEl.classList.remove('excursions__item--prototype')
-    
-    const [headerEl, formEl] = newLiEl.children;
-    const [titleLi, descriptionLi] = headerEl.children;
-    const [adultEl, childEl, submitEL] = formEl.children;
-    const [adultPriceEl] = adultEl.children[0].children;
-    const [childPriceEl] = childEl.children[0].children;
-    const [editBtn, removeBtn] = submitEL.children;
+    const newLiEl = this._clonePrototypeToNewLi();
+    const [titleLi, descriptionLi, adultPriceEl, childPriceEl] = this._getArrWithElementsToCreateAndEditLi(newLiEl);
 
     newLiEl.dataset.id = id;
     titleLi.innerText = name;
@@ -62,21 +119,37 @@ _createLiEl( item ) {
     adultPriceEl.innerText = adultPrice;
     childPriceEl.innerText = childPrice;
 
-    editBtn.addEventListener('click', function(e) {
-        e.preventDefault()
-        const ElToSetAttribute = [titleLi, descriptionLi, adultPriceEl, childPriceEl]
-        this.updateExcursions(ElToSetAttribute)
-    });
-    removeBtn.addEventListener('click', removeHandler);
+    // editBtn.addEventListener('click', (e) =>  {
+    //     e.preventDefault()
+    //     const ElToSetAttribute = [titleLi, descriptionLi, adultPriceEl, childPriceEl];
+    //     this.updateExcursions(e, ElToSetAttribute);
+    // });
 
-    function removeHandler(e) {
-        e.preventDefault();
-        console.log(e.target)
-    }
+    // removeBtn.addEventListener('click', (e) => {
+    //     e.preventDefault();
+    //     this.removeExcursions(e)
+    // });
 
     return newLiEl
 }
 
+_getArrWithElementsToCreateAndEditLi(newLiEl) {
+    const [headerEl, formEl] = newLiEl.children;
+    const [titleLi, descriptionLi] = headerEl.children;
+    const [adultEl, childEl, submitEL] = formEl.children;
+    const [adultPriceEl] = adultEl.children[0].children;
+    const [childPriceEl] = childEl.children[0].children;
+
+    return [titleLi, descriptionLi, adultPriceEl, childPriceEl]
+}
+
+_clonePrototypeToNewLi() {
+    const liElPrototype = document.querySelector('.excursions__item--prototype');
+    const newLiEl = liElPrototype.cloneNode(true);
+    newLiEl.classList.remove('excursions__item--prototype')
+    
+    return newLiEl;
+}
 
 _fetch(url, options) {
     return fetch(url, options)
