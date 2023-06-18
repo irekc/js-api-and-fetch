@@ -9,7 +9,7 @@
 <body>
     <h1>Panel administratora</h1>
     <section class="panel">
-        <ul class="panel__excursions excursions">
+        <ul class="panel__excursions--prototype excursions">
             <li data-id="1" class="excursions__item excursions__item--prototype">
                 <header class="excursions__header">
                     <h2 class="excursions__title">Ogrodzieniec</h2>
@@ -41,8 +41,9 @@
                 </form>
             </li>
         </ul>
+        <ul class="panel__excursions excursions"></ul>
         <section>
-            <form class="form" novalidate>
+            <form class="panel__form" novalidate>
                 <div class="form__row">
                     <label class="form__label">
                         Nazwa:<input class="form__field" name="name" />
