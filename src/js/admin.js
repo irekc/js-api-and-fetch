@@ -1,17 +1,21 @@
 import './../css/admin.css';
 
 import ExcursionsAPI from './ExcursionsAPI';
+import ServiceAdmin from './ServiceAdmin';
+import Actions from './Actions';
 
-const excursions = new ExcursionsAPI();
+const api = new ExcursionsAPI();
+const actions = new Actions()
 
 document.addEventListener('DOMContentLoaded', init)
 
 function init() {
     
-    excursions.addExcursions();
-    excursions.updateExcursions();
-    excursions.loadExcursions();
-    excursions.removeExcursions()
+    const excursions = new ServiceAdmin(api, actions)
+    excursions.load();
+    excursions.update();
+    excursions.remove();
+    excursions.add();
     console.log('admin');
 }
 

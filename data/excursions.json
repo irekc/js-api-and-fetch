@@ -3,16 +3,23 @@
     {
       "name": "Mielec",
       "description": "lorem ipsum",
-      "adultPrice": "200",
-      "childPrice": "100",
+      "adultPrice": "100",
+      "childPrice": "40",
       "id": 1
+    },
+    {
+      "name": "Mielec",
+      "description": "lorem ipsum",
+      "adultPrice": "100",
+      "childPrice": "40",
+      "id": 2
     },
     {
       "name": "Warszawa",
       "description": "lorem ipsum",
-      "adultPrice": "200",
-      "childPrice": "100",
-      "id": 2
+      "adultPrice": "100",
+      "childPrice": "40",
+      "id": 3
     }
   ],
   "orders": []
