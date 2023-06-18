@@ -40,8 +40,28 @@ updateExcursions() {
             const isEditable = arrWithElToEdit.every(element => element.isContentEditable);
 
             if(isEditable) {
-                e.target.value = 'edytuj';
-                arrWithElToEdit.forEach(element => element.setAttribute('contenteditable', false))
+                const id = liEl.dataset.id;
+                const [titleLi, descriptionLi, adultPriceEl, childPriceEl] = arrWithElToEdit;
+                const data = {
+                    name: titleLi.innerText,
+                    description: descriptionLi.innerText,
+                    adultPrice: adultPriceEl.innerText,
+                    childPrice: childPriceEl.innerText
+                };
+                const options = {
+                    method: 'PUT',
+                    body: JSON.stringify( data ),
+                    headers: { 'Content-Type':'application/json' }
+                };
+
+                this._fetch(`${this.urlExcursions}/${id}`, options)
+                    .then(resp => console.log(resp))
+                    .catch(err => console.error(err))
+                    .finally(() => {
+                        e.target.value = 'edytuj';
+                        arrWithElToEdit.forEach(element => element.setAttribute('contenteditable', false))
+
+                    })
                 
             } else {
                 e.target.value = 'zapisz';
@@ -49,19 +69,7 @@ updateExcursions() {
             }
         }
     })
-    
-    
-    // if(e.target.value === 'edytuj') {
-    //     e.target.value = 'zapisz';
-    //     arrWithElToEdit.forEach(item => {
-    //         item.setAttribute('contenteditable', true)
-    //     })
-    // } else {
-    //     e.target.value = 'edytuj';
-    //     arrWithElToEdit.forEach(item => {
-    //         item.setAttribute('contenteditable', false)
-    //     })
-    // }
+   
 }
 
 removeExcursions(e) {
@@ -118,17 +126,6 @@ _createLiEl( item ) {
     descriptionLi.innerText = description;
     adultPriceEl.innerText = adultPrice;
     childPriceEl.innerText = childPrice;
-
-    // editBtn.addEventListener('click', (e) =>  {
-    //     e.preventDefault()
-    //     const ElToSetAttribute = [titleLi, descriptionLi, adultPriceEl, childPriceEl];
-    //     this.updateExcursions(e, ElToSetAttribute);
-    // });
-
-    // removeBtn.addEventListener('click', (e) => {
-    //     e.preventDefault();
-    //     this.removeExcursions(e)
-    // });
 
     return newLiEl
 }
