@@ -16,22 +16,26 @@ class Actions {
 
     clonePrototypeToNewLi() {
         const liElPrototype = document.querySelector('.excursions__item--prototype');
+        console.dir(liElPrototype)
         const newLiEl = liElPrototype.cloneNode(true);
+        console.log(newLiEl)
         newLiEl.classList.remove('excursions__item--prototype')
         
         return newLiEl;
     }
 
     getArrWithElementsToCreateAndEditLi(newLiEl) {
-        const [headerEl, formEl] = newLiEl.children;
-        const [titleLi, descriptionLi] = headerEl.children;
-        const [adultEl, childEl] = formEl.children;
-        const [adultPriceEl] = adultEl.children[0].children;
-        const [childPriceEl] = childEl.children[0].children;
+    
+        const titleLi = newLiEl.querySelector('.excursions__title')
+        const descriptionLi = newLiEl.querySelector('.excursions__description')
+        const adultPriceEl = newLiEl.querySelector('.excursions__field-name--adult')
+        const childPriceEl = newLiEl.querySelector('.excursions__field-name--child')
     
         return [titleLi, descriptionLi, adultPriceEl, childPriceEl]
     }
 
+
+
 }
 
-export default Actions
+export default Actions 
