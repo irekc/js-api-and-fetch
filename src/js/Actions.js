@@ -34,6 +34,23 @@ class Actions {
         return [titleLi, descriptionLi, adultPriceEl, childPriceEl]
     }
 
+    getObjectWithElementsLiToBasket( liEl ) {
+
+        const titleLi = liEl.querySelector('.excursions__title');
+        const adultPriceEl = liEl.querySelector('.excursions__field-name--adult');
+        const childPriceEl = liEl.querySelector('.excursions__field-name--child');
+        const adultsEl = liEl.querySelector('.excursions__field-input--adult');
+        const childrenEl = liEl.querySelector('.excursions__field-input--children');
+
+        return {
+            title: titleLi.innerText,
+            adultPrice: adultPriceEl.innerText,
+            childPrice: childPriceEl.innerText,
+            adults: adultsEl.value,
+            children: childrenEl.value
+        }
+    }
+
 
 
 }
