@@ -16,9 +16,7 @@ class Actions {
 
     clonePrototypeToNewLi() {
         const liElPrototype = document.querySelector('.excursions__item--prototype');
-        console.dir(liElPrototype)
         const newLiEl = liElPrototype.cloneNode(true);
-        console.log(newLiEl)
         newLiEl.classList.remove('excursions__item--prototype')
         
         return newLiEl;
@@ -51,6 +49,14 @@ class Actions {
         }
     }
 
+    getArrWithElementsSummaryItem( item ) {
+        const titleEl = item.querySelector('.summary__name');
+        const totalPriceEl = item.querySelector('.summay__total-price')
+        const summaryPricesEl = item.querySelector('.summary__prices')
+        const removeBtn = item.querySelector('.summary__btn-remove')
+
+        return [titleEl, totalPriceEl, summaryPricesEl, removeBtn]
+    }
 
 
 }

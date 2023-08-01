@@ -6,13 +6,14 @@ import ServiceClient from './ServiceClient';
 
 const api = new ExcursionsAPI();
 const actions = new Actions();
-const basket = [];
+// const basket = [];
 
 document.addEventListener('DOMContentLoaded', init);
 
 function init() {
     const clientExcursions = new ServiceClient(api, actions)
     clientExcursions.load();
-    clientExcursions.addExcursionToBasket( basket );
+    clientExcursions.addExcursionToBasket();
+
 }
 console.log('client');
