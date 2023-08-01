@@ -47,7 +47,7 @@ class ServiceClient {
                 }
 
                 if(errors.length > 0) {
-                    errorsEl.innerText = errors.toString()
+                    errorsEl.innerText = errors.join(' | ')
                 } else {
                     errorsEl.innerText = '';
                     this.basket.push(objectWithElToAddToBasket)
