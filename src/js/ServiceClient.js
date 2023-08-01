@@ -67,6 +67,9 @@ class ServiceClient {
         panelSummary.innerHTML = '';
         panelSummary.appendChild(summaryItemPrototype)
 
+        const orderTotalPriceEl = document.querySelector('.order__total-price-value')
+        let orderTotalPrice = 0;
+
         if(summaryItemPrototype) {
             this.basket.forEach( (item, index) => {
                 const {title, adultPrice, adults, childPrice, children} = item
@@ -75,7 +78,8 @@ class ServiceClient {
                 newSummaryItem.dataset.id = index;
                 
                 const [titleEl, totalPriceEl, summaryPricesEl, removeBtn] = this.actionService.getArrWithElementsSummaryItem( newSummaryItem );
-                const totalPrice = adultPrice * adults + childPrice * children
+                const totalPrice = adultPrice * adults + childPrice * children;
+                orderTotalPrice += totalPrice;
 
                 titleEl.innerText = title
                 totalPriceEl.innerHTML = `${totalPrice}PLN`;
@@ -84,6 +88,7 @@ class ServiceClient {
 
                 panelSummary.appendChild(newSummaryItem)
             })
+            orderTotalPriceEl.innerText = `${orderTotalPrice}PLN`
         }
 
     }
