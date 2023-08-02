@@ -77,7 +77,6 @@ class ServiceAdmin {
                 .finally(this.load());
         }
     })
-    console.log('usuwanie')
     
     }
 

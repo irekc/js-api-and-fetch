@@ -6,7 +6,6 @@ import ServiceClient from './ServiceClient';
 
 const api = new ExcursionsAPI();
 const actions = new Actions();
-// const basket = [];
 
 document.addEventListener('DOMContentLoaded', init);
 
@@ -17,4 +16,3 @@ function init() {
     clientExcursions.panelOrderHandler()
 
 }
-console.log('client');

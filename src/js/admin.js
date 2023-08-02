@@ -16,6 +16,5 @@ function init() {
     excursions.update();
     excursions.remove();
     excursions.add();
-    console.log('admin');
 }
 

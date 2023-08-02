@@ -43,7 +43,6 @@ class ServiceClient {
                 
                 if(isNaN(adults) || isNaN(children)) {
                     errors.push('wartości w polach muszą być liczbą')
-                    console.log(errors)
                 }
 
                 if(errors.length > 0) {
@@ -51,7 +50,6 @@ class ServiceClient {
                 } else {
                     errorsEl.innerText = '';
                     this.basket.push(objectWithElToAddToBasket)
-                    console.log(this.basket)
                     this.loadExcursionsInPanelSummary()
                     adultInputEl.value = '';
                     childrenInputEl.value = '';
@@ -81,7 +79,7 @@ class ServiceClient {
                 const totalPrice = adultPrice * adults + childPrice * children;
                 orderTotalPrice += totalPrice;
 
-                titleEl.innerText = title
+                titleEl.innerText = title;
                 totalPriceEl.innerHTML = `${totalPrice}PLN`;
                 summaryPricesEl.innerText = `dorośli: ${adults} x ${adultPrice}PLN, dzieci: ${children} x ${childPrice}PLN`;
                 removeBtn.addEventListener('click', this.removeSummaryItem.bind(this))
