@@ -40,6 +40,10 @@ ul {
     color: red
 }
 
+.order__field-errors {
+    color: red;
+}
+
 .panel__form {
     background-color: #f4f4f4;
     padding: 20px;

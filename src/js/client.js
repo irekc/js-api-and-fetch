@@ -14,6 +14,7 @@ function init() {
     const clientExcursions = new ServiceClient(api, actions)
     clientExcursions.load();
     clientExcursions.addExcursionToBasket();
+    clientExcursions.panelOrderHandler()
 
 }
 console.log('client');

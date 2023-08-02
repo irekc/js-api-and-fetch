@@ -101,6 +101,43 @@ class ServiceClient {
         this.basket.splice(id, 1);
         this.loadExcursionsInPanelSummary()
     }
+
+    panelOrderHandler () {
+        const panelOrderForm = document.querySelector('.panel__order')
+        const nameInput = panelOrderForm.querySelector('.order__field-input[name="name"]')
+        const emailInput = panelOrderForm.querySelector('.order__field-input[name="email"]')
+        const errorsEl = panelOrderForm.querySelector('.order__field-errors')
+        const orderTotalPriceEl = panelOrderForm.querySelector('.order__total-price-value')
+        
+        if(panelOrderForm) {
+            panelOrderForm.addEventListener('submit', (e) => {
+                const name = nameInput.value;
+                const email = emailInput.value;
+                const errors = []
+                
+                
+                if(!name || !email) {
+                    errors.push('oba pola muszą być uzupełnione')
+                }
+                
+                if(!email.includes('@')) {
+                    errors.push('adres email musi zawierać "@"')
+                }
+                
+                if(orderTotalPriceEl.innerText === '0PLN') {
+                    errors.push('proszę dodać chociaż jedną wycieczkę')
+                }
+                
+                if(errors.length > 0) {
+                    e.preventDefault()
+                    errorsEl.innerText = errors.join(' | ')
+                } else {
+                    alert(`twoje zamówienie zostało zrealizowane, szczegóły wysłano na adres ${emailInput.value}`)
+                }
+            })
+
+        }
+    }
 }
 
 export default ServiceClient;
