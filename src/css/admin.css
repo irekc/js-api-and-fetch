@@ -9,6 +9,11 @@ ul {
     list-style: none;
 }
 
+body h1 {
+    margin-top  : 10px;
+    text-align: center;
+}
+
 .panel {
     display: flex;
     margin: 0 auto;
@@ -53,6 +58,10 @@ ul {
 
 .excursions__field-input:hover, .order__field-submit:hover {
     background-color: #3498dbc9;
+}
+
+.excursions__field--errors{
+    color: red;
 }
 
 .order__field-submit {

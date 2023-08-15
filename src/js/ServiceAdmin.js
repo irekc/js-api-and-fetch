@@ -21,7 +21,6 @@ class ServiceAdmin {
     }
 
     update() {
-        console.log('edycja')
         const ulEl = document.querySelector('.panel__excursions');
 
         ulEl.addEventListener('click', e => {
@@ -85,6 +84,8 @@ class ServiceAdmin {
         form.addEventListener('submit', e => {
             e.preventDefault();
 
+            const errors = [];
+            const errorsEl = document.querySelector('.excursions__field--errors')
             const [formName, formDescription, formAdultPrice, formChildPrice] = e.target.elements;
             const data = { 
                 name: formName.value,
@@ -93,14 +94,26 @@ class ServiceAdmin {
                 childPrice: formChildPrice.value
             }
 
-            this.apiService.addExcursions(data)
-                .then(resp => console.log(resp))
-                .catch(err => console.error(err))
-                .finally( this.load() ) 
-    })
+            if(!formName.value || !formDescription.value || !formAdultPrice.value || !formChildPrice.value) {
+                errors.push('wszystkie pola muszą być uzupełnione')
+            }
 
+            if(errors.length > 0) {
+                errorsEl.innerText = errors[0]
+            } else {
+                errorsEl.innerText = '';
+                formName.value = '';
+                formDescription.value = '';
+                formAdultPrice.value = '';
+                formChildPrice.value = '';
+
+                this.apiService.addExcursions(data)
+                    .then(resp => console.log(resp))
+                    .catch(err => console.error(err))
+                    .finally( this.load() ) 
+            }
+        })
     }
-    
 }
 
 export default ServiceAdmin

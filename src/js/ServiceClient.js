@@ -34,8 +34,6 @@ class ServiceClient {
                 const data = this.actionService.getObjectWithElementsLiToBasket( liEl )
                 let {adults, children} = data;
 
-                
-                
                 if(!adults || !children) {
                     errors.push('oba pola muszą być uzupełnione')
                 }
