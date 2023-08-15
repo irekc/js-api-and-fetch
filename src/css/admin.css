@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Verdana, sans-serif;
 }
 
 ul {
@@ -36,10 +37,49 @@ ul {
     width: calc(50% - 20px);
 }
 
+.excursions__description {
+    padding: 10px 0
+}
+
+.excursions__field-input, .order__field-submit {
+    color: white;
+    width: 45%;
+    padding: 10px 10px;
+    margin: 10px 0;
+    background-color: #3498db;
+    border: none;
+    border-radius: 5px;
+}
+
+.excursions__field-input:hover, .order__field-submit:hover {
+    background-color: #3498dbc9;
+}
+
+.order__field-submit {
+    width: 100%;
+}
+
+.excursions__field {
+    margin-bottom: 5px;
+}
+
+.excursions__field--submit {
+    display: flex;
+    justify-content: space-around;
+}
+
+.form__row {
+    margin: 10px 0;
+}
+
 .panel__form {
     background-color: #f4f4f4;
     padding: 20px;
-    width: 30%;
+    width: 100%;
+}
+
+.form__field, .order__form__field {
+    width: 100%;
 }
 
 .uploader, .order {
@@ -54,4 +94,14 @@ ul {
 
 .form__field--longtext {
     height: 100px;
+}
+
+.excursions__item {
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 20px;
+    width: calc(50% - 20px);
+    min-width: 300px;
+    box-shadow: 5px 11px 22px -13px rgba(66, 68, 90, 1)
 }
