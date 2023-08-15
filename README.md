@@ -76,8 +76,8 @@ Od teraz API będzie dostępne pod adresem: http://localhost:3000. Zauważ jedna
 * orders.
 
 W zależności od tego, na jakich danych będziesz chciał pracować, do `fetch()` przekażesz inny URL, tj.:
-* http://localost:3000/excursions – zarządzanie wycieczkami
-* http://localost:3000/orders – zarządzanie zamówieniami.
+* http://localhost:3000/excursions – zarządzanie wycieczkami
+* http://localhost:3000/orders – zarządzanie zamówieniami.
 
 ### Fetch
 

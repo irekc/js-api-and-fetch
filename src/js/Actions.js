@@ -51,14 +51,21 @@ class Actions {
 
     getArrWithElementsSummaryItem( item ) {
         const titleEl = item.querySelector('.summary__name');
-        const totalPriceEl = item.querySelector('.summay__total-price')
+        const totalPriceEl = item.querySelector('.summary__total-price')
         const summaryPricesEl = item.querySelector('.summary__prices')
         const removeBtn = item.querySelector('.summary__btn-remove')
 
         return [titleEl, totalPriceEl, summaryPricesEl, removeBtn]
     }
 
+    getArrWithElementsToAddExcurionToBasket( btnEl ) {
+        const liEl = btnEl.closest('.excursions__item');
+                const errorsEl = liEl.querySelector('.excursions__field--errors')
+                const adultInputEl = liEl.querySelector('.excursions__field-input--adult')
+                const childrenInputEl = liEl.querySelector('.excursions__field-input--children')
 
+                return [liEl, errorsEl, adultInputEl, childrenInputEl]
+    }
 }
 
 export default Actions 

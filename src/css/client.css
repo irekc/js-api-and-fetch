@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Verdana, sans-serif;
 }
 
 ul {
@@ -22,14 +23,17 @@ ul {
 .excursions {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
-.excurions__item {
+.excursions__item {
     border: 1px solid #bbb;
     border-radius: 5px;
     margin: 10px;
     padding: 20px;
     width: calc(50% - 20px);
+    min-width: 300px;
+    box-shadow: 5px 11px 22px -13px rgba(66, 68, 90, 1)
 }
 
 .excursions__item--prototype {
@@ -58,4 +62,54 @@ ul {
 
 .summary__item--prototype {
     display: none;
+}
+
+.excursions__description {
+    padding: 10px 0
+}
+
+.excursions__field-input {
+    width: 100%;
+    margin: 5px 0;
+}
+
+.excursions__field-input--submit, .order__field-submit {
+    color: white;
+    width: 100%;
+    padding: 10px 10px;
+    margin: 10px 0;
+    background-color: #3498db;
+    border: none;
+    border-radius: 5px;
+}
+
+.excursions__field-input--submit:hover, .order__field-submit:hover {
+    background-color: #3498dbc9;
+}
+
+.excursions__field--errors {
+    display: block;
+    font-size: 12px;
+}
+
+.order__total-price {
+    background-color: #acabab;
+    border-radius: 2px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    padding: 10px;
+}
+
+.order__field-input {
+    margin: 10px 0;
+}
+
+.summary__btn-remove {
+    text-decoration: none;
+    color: red;
+}
+
+.summary__prices {
+    line-height: 1.5;
+    margin-top: 10px;
 }

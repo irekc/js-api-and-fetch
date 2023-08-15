@@ -23,20 +23,19 @@ class ServiceClient {
 
     addExcursionToBasket() {
         const ulEl = document.querySelector('.panel__excursions')
-
         ulEl.addEventListener('click', e => {
             e.preventDefault();
             const addBtn = e.target;
             const errors = []
             
             if(addBtn.classList.contains('excursions__field-input--submit')) {
-                const liEl = addBtn.closest('.excursions__item');
-                const errorsEl = liEl.querySelector('.excursions__field--errors')
-                const objectWithElToAddToBasket = this.actionService.getObjectWithElementsLiToBasket( liEl )
-                let {adults, children} = objectWithElToAddToBasket;
-                const adultInputEl = liEl.querySelector('.excursions__field-input--adult')
-                const childrenInputEl = liEl.querySelector('.excursions__field-input--children')
+                e.preventDefault()
+                const [liEl, errorsEl, adultInputEl, childrenInputEl] = this.actionService.getArrWithElementsToAddExcurionToBasket( addBtn );
+                const data = this.actionService.getObjectWithElementsLiToBasket( liEl )
+                let {adults, children} = data;
 
+                
+                
                 if(!adults || !children) {
                     errors.push('oba pola muszą być uzupełnione')
                 }
@@ -49,7 +48,7 @@ class ServiceClient {
                     errorsEl.innerText = errors.join(' | ')
                 } else {
                     errorsEl.innerText = '';
-                    this.basket.push(objectWithElToAddToBasket)
+                    this.basket.push(data)
                     this.loadExcursionsInPanelSummary()
                     adultInputEl.value = '';
                     childrenInputEl.value = '';
@@ -67,7 +66,7 @@ class ServiceClient {
 
         const orderTotalPriceEl = document.querySelector('.order__total-price-value')
         let orderTotalPrice = 0;
-
+        
         if(summaryItemPrototype) {
             this.basket.forEach( (item, index) => {
                 const {title, adultPrice, adults, childPrice, children} = item
@@ -112,7 +111,12 @@ class ServiceClient {
                 const name = nameInput.value;
                 const email = emailInput.value;
                 const errors = []
-                
+                const data = {
+                    name: name,
+                    email: email,
+                    orderValue: orderTotalPriceEl.innerText,
+                    orderBasket: this.basket
+                }
                 
                 if(!name || !email) {
                     errors.push('oba pola muszą być uzupełnione')
@@ -130,6 +134,7 @@ class ServiceClient {
                     e.preventDefault()
                     errorsEl.innerText = errors.join(' | ')
                 } else {
+                    this.apiService.addOrder( data )
                     alert(`twoje zamówienie zostało zrealizowane, szczegóły wysłano na adres ${emailInput.value}`)
                 }
             })

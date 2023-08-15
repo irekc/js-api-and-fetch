@@ -2,25 +2,101 @@
   "excursions": [
     {
       "name": "Mielec",
-      "description": "lorem ipsum",
+      "description": "Tutaj swoją siedzibę mają Polskie Zakłady Lotnicze, największe przedsiębiorstwo tej branży w Polsce i jedno z większych w Europie. Ponadsześćdziesięciotysięczny Mielec słynie przede wszystkim z rozwiniętego przemysłu lotniczego i Specjalnej Strefy Ekonomicznej Euro-Park Mielec.",
       "adultPrice": "100",
-      "childPrice": "40",
-      "id": 1
+      "childPrice": "50",
+      "id": 7
     },
     {
       "name": "Warszawa",
-      "description": "lorem ipsum",
-      "adultPrice": "320",
-      "childPrice": "129",
-      "id": 3
+      "description": "Warszawa to największe polskie miasto, które rozpościera się na powierzchni ponad 500 km2. W osiemnastu dzielnicach mieszka prawie dwa miliony ludzi. Sercem Warszawy jest Śródmieście, tam też znajduje się jeden z najbardziej rozpoznawalnych zabytków stolicy, czyli Pałac Kultury i Nauki.",
+      "adultPrice": "300",
+      "childPrice": "150",
+      "id": 8
     },
     {
       "name": "Wrocław",
-      "description": "lorem",
-      "adultPrice": "200",
-      "childPrice": "100",
-      "id": 4
+      "description": "Wrocław, stolica Dolnego Śląska, jest jednym z najstarszych i najpiękniejszych miast w Polsce. Położony u podnóża Sudetów, nad rzeką Odrą , poprzecinany jej licznymi dopływami i kanałami, jest wyjątkowym miastem 12 wysp i ponad stu mostów. Bogata i burzliwa historia miasta wpisana jest w jego mury.",
+      "adultPrice": "250",
+      "childPrice": "125",
+      "id": 9
     }
   ],
-  "orders": []
+  "orders": [
+    {
+      "name": "Ireneusz",
+      "email": "przykladowy@email.pl",
+      "orderValue": "400PLN",
+      "orderBasket": [
+        {
+          "title": "Mielec",
+          "adultPrice": "100",
+          "childPrice": "50",
+          "adults": "2",
+          "children": "4"
+        }
+      ],
+      "id": 1
+    },
+    {
+      "name": "Ireneusz",
+      "email": "przykladowy@email.pl",
+      "orderValue": "300PLN",
+      "orderBasket": [
+        {
+          "title": "Mielec",
+          "adultPrice": "100",
+          "childPrice": "50",
+          "adults": "2",
+          "children": "2"
+        }
+      ],
+      "id": 2
+    },
+    {
+      "name": "Ireneusz",
+      "email": "przykladowy@email.pl",
+      "orderValue": "400PLN",
+      "orderBasket": [
+        {
+          "title": "Mielec",
+          "adultPrice": "100",
+          "childPrice": "50",
+          "adults": "2",
+          "children": "4"
+        }
+      ],
+      "id": 3
+    },
+    {
+      "name": "Mariusz",
+      "email": "przykladowy@email.pl",
+      "orderValue": "1050PLN",
+      "orderBasket": [
+        {
+          "title": "Warszawa",
+          "adultPrice": "300",
+          "childPrice": "150",
+          "adults": "2",
+          "children": "3"
+        }
+      ],
+      "id": 4
+    },
+    {
+      "name": "Janusz",
+      "email": "przykladowy@email.pl",
+      "orderValue": "400PLN",
+      "orderBasket": [
+        {
+          "title": "Mielec",
+          "adultPrice": "100",
+          "childPrice": "50",
+          "adults": "2",
+          "children": "4"
+        }
+      ],
+      "id": 5
+    }
+  ]
 }
