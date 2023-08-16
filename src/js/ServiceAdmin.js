@@ -73,7 +73,7 @@ class ServiceAdmin {
             this.apiService.removeExcursions(id)
                 .then(resp => console.log(resp))
                 .catch(err => console.error(err))
-                .finally(this.load());
+                .finally(() => this.load());
         }
     })
     
@@ -110,7 +110,7 @@ class ServiceAdmin {
                 this.apiService.addExcursions(data)
                     .then(resp => console.log(resp))
                     .catch(err => console.error(err))
-                    .finally( this.load() ) 
+                    .finally(() => this.load() ) 
             }
         })
     }
